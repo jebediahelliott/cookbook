@@ -6,4 +6,8 @@ class RecipeController < ApplicationController
     end
   end
 
+  post '/recipes' do
+    binding.pry
+  end
+
 end

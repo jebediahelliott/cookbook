@@ -1,5 +1,5 @@
 class Ingredient < ActiveRecord::Base
   extend Slug::ClassMethods
   include Slug::InstanceMethods
-  belongs_to :recipe
+  has_many :recipes, through: :amounts
 end
