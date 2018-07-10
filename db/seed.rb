@@ -1,5 +1,0 @@
-User.create(:username => "Jeb" :password => "1234")
-User.create(:username => "Steve" :password => "1234")
-User.create(:username => "Daryll" :password => "1234")
-User.create(:username => "Evan" :password => "1234")
-User.create(:username => "Jordan" :password => "1234")
