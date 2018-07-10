@@ -1,16 +1,20 @@
 class UserController < ApplicationController
 
-  get '/new' do
+  get 'users/new' do
     erb :'users/create'
   end
 
-  post '/users' do
+  post '/users/new' do
     if User.find_by(:username => params[:username])
       redirect '/new'
     end
     @user = User.create(params)
     session[:id] = @user.id
     redirect "users/#{@user.slug}"
+  end
+
+  get '/login' do
+    erb :'users/login'
   end
 
   get '/users/:slug' do
