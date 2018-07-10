@@ -8,7 +8,7 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-
+    redirect '/new'
   end
 
   def current_user(session)
