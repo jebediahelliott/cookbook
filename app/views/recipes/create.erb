@@ -4,10 +4,15 @@
   <input type="text" name="recipe[name]"><br>
   <% 10.times do %>
     <label for="recipe[ingredients][][name]">Ingredient:</label>
-    <input type="text" name="recipe[ingredients][][name]"><br>
+    <input type="text" name="recipe[ingredients][][name]">
     <label for="recipe[ingredient_amount]">Amount</label>
     <input type="text" name="recipe[ingredient_amount]">
     <label for="recipe[ingredients][][unit]">Unit:</label>
-    <input type="text" name="recipe[ingredients][][unit]">
+    <input type="text" name="recipe[ingredients][][unit]"><br>
   <%end%>
+  <label for="recipe[method]">Method</label><br>
+  <textarea rows="10" columns="50" name="recipe[method]"></textarea><br>
+  <label for="recipe[notes]">Notes</label><br>
+  <textarea rows="5" columns="50" name="recipe[notes]"></textarea><br>
+  <input type="submit">
 </form>
