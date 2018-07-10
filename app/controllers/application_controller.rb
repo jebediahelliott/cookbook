@@ -1,4 +1,5 @@
 class ApplicationController < Sinatra::Base
+
   configure do
     set :public_folder, 'public'
     set :views, 'app/views'
@@ -7,6 +8,15 @@ class ApplicationController < Sinatra::Base
   end
 
   get '/' do
-    "Hello, World!"
+
   end
+
+  def current_user(session)
+    User.find_by_id(session[:id])
+  end
+
+  def logged_in?(session)
+    !!session[:id]
+  end
+
 end
