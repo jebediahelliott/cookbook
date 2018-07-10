@@ -4,6 +4,7 @@ class CreateRecipes < ActiveRecord::Migration
       t.string :name
       t.string :method
       t.string :notes
+      t.integer :user_id
     end
   end
 end
