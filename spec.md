@@ -20,7 +20,8 @@ Specs:
         A recipe can be created, viewed, edited and deleted by its user
 - [x] Include user input validations
         A new user cannot sign up with an existing username. When a user logs in their username and password are checked against the database.
-- [ ] Display validation failures to user with error message (example form URL e.g. /posts/new)
+- [x] Display validation failures to user with error message (example form URL e.g. /posts/new)
+        Flashes error message when user inputs incompatible sign up or login credentials.
 - [x] Your README.md includes a short description, install instructions, a contributors guide and a link to the license for your code
 
 Confirm

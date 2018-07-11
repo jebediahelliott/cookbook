@@ -29,6 +29,7 @@ class UserController < ApplicationController
       session[:id] = @user.id
       redirect "/users/#{@user.slug_username}"
     else
+      flash[:login] = "Username or password does not match, please try again."
       redirect 'users/login'
     end
   end
@@ -37,7 +38,7 @@ class UserController < ApplicationController
     @user = User.find_by_slug_username(params[:slug])
     if logged_in?(session) && (@user == current_user(session))
       erb :'users/show'
-    elsif !logged_in?(session)
+    elsif logged_in?(session)
       redirect "users/#{@user.slug_username}"
     else
       redirect '/new'
