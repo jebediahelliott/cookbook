@@ -16,12 +16,20 @@ class RecipeController < ApplicationController
       @recipe.amounts << amt
     end
     @user.recipes << @recipe
-    erb :"recipes/#{@recipe.slug}"
+    redirect "recipes/#{@recipe.slug}"
   end
 
   get '/recipes/:slug' do
     @recipe = Recipe.find_by_slug(params[:slug])
     erb :'recipes/show'
+  end
+
+  delete '/recipes/:slug/delete' do
+    @recipe = Recipe.find_by_slug(params[:slug])
+    @user = User.find(@recipe.user_id)
+    @recipe.destroy
+
+    redirect "users/#{@user.slug_username}"
   end
 
 end
