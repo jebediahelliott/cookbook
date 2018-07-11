@@ -58,6 +58,9 @@ class RecipeController < ApplicationController
   delete '/recipes/:slug/delete' do
     @recipe = Recipe.find_by_slug(params[:slug])
     @user = User.find(@recipe.user_id)
+    @recipe.amounts.each do |amount|
+      amount.destroy
+    end
     @recipe.destroy
 
     redirect "users/#{@user.slug_username}"
