@@ -7,14 +7,16 @@ class RecipeController < ApplicationController
   end
 
   post '/recipes' do
-    recipe = Recipe.create(params[:recipe])
+    @recipe = Recipe.create(params[:recipe])
+    @user = User.find(session[:id])
     params[:ingredients].each_with_index do |ingredient, i|
       ing = Ingredient.create(ingredient)
       amt = Amount.create(params[:amounts][i])
       ing.amounts << amt
-      recipe.amounts << amt
+      @recipe.amounts << amt
     end
-    erb :'recipes/show'
+    @user.recipes << @recipe
+    erb :"recipes/#{@recipe.slug}"
   end
 
 end
