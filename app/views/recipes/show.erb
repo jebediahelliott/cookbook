@@ -1,1 +1,6 @@
 <h1><%= @recipe.name %></h1>
+<% @recipe.ingredients.each do |ingredient| %>
+  <h3><%= "#{ingredient.name} #{ingredient.amounts[0].ingredient_amount} #{ingredient.unit}" %></h3>
+<%end%>
+<h4><%= @recipe.method %></h4>
+<h4><%= @recipe.notes %></h4>
