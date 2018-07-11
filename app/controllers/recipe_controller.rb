@@ -4,6 +4,8 @@ class RecipeController < ApplicationController
     if logged_in?(session)
       erb :'recipes/create'
     end
+    flash[:login] = "Please login"
+    redirect '/'
   end
 
   post '/recipes' do
@@ -25,6 +27,7 @@ class RecipeController < ApplicationController
       erb :'recipes/show'
     elsif logged_in?(session)
       @user = User.find(session[:id])
+      flash[:bad_user] = "You can only view your own recipes"
       redirect "users/#{@user.slug_username}"
     else
       redirect '/'
