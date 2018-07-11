@@ -2,3 +2,6 @@
 <% @user.recipes.each.with_index(1) do |recipe, i| %>
   <h3><a href="/recipes/<%= recipe.slug %>"><%= "#{i}. #{recipe.name}" %></a></h3>
 <% end %>
+<form action="/logout" method="/get">
+  <input type="submit" value="Logout">
+</form>

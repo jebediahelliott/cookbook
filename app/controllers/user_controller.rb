@@ -6,6 +6,7 @@ class UserController < ApplicationController
 
   post '/users/new' do
     if User.find_by(:username => params[:username])
+      flash[:message] = "Please select a different username."
       redirect '/new'
     end
     @user = User.create(params)
@@ -15,6 +16,11 @@ class UserController < ApplicationController
 
   get '/login' do
     erb :'users/login'
+  end
+
+  get '/logout' do
+    session.clear
+    redirect '/'
   end
 
   post '/users/login' do

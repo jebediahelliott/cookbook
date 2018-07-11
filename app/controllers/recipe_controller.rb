@@ -21,8 +21,7 @@ class RecipeController < ApplicationController
 
   get '/recipes/:slug' do
     @recipe = Recipe.find_by_slug(params[:slug])
-
-    if logged_in?(session) && (@recipe.user.id == current_user(session))
+    if logged_in?(session) && (@recipe.user == current_user(session))
       erb :'recipes/show'
     elsif logged_in?(session)
       @user = User.find(session[:id])
@@ -35,7 +34,15 @@ class RecipeController < ApplicationController
 
   get '/recipes/:slug/edit' do
     @recipe = Recipe.find_by_slug(params[:slug])
-    erb :'recipes/edit'
+    if logged_in?(session) && (@recipe.user == current_user(session))
+      erb :'recipes/edit'
+    elsif logged_in?(session)
+      @user = User.find(session[:id])
+      redirect "users/#{@user.slug_username}"
+    else
+      redirect '/'
+    end
+
   end
 
   patch '/recipes/:slug' do
