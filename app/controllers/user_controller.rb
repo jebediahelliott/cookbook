@@ -10,7 +10,7 @@ class UserController < ApplicationController
     end
     @user = User.create(params)
     session[:id] = @user.id
-    redirect "users/#{@user.slug}"
+    redirect "users/#{@user.slug_username}"
   end
 
   get '/login' do
@@ -21,18 +21,18 @@ class UserController < ApplicationController
     @user = User.find_by(:username => params[:username])
     if @user && @user.authenticate(params[:password])
       session[:id] = @user.id
-      redirect "/users/#{@user.slug}"
+      redirect "/users/#{@user.slug_username}"
     else
       redirect 'users/login'
     end
   end
 
   get '/users/:slug' do
-    @user = User.find_by_slug(params[:slug])
+    @user = User.find_by_slug_username(params[:slug])
     if logged_in?(session) && (@user == current_user(session))
       erb :'users/show'
     elsif !logged_in?(session)
-      redirect "users/#{@user.slug}"
+      redirect "users/#{@user.slug_username}"
     else
       redirect '/new'
     end
