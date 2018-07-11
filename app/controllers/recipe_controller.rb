@@ -24,6 +24,21 @@ class RecipeController < ApplicationController
     erb :'recipes/show'
   end
 
+  get '/recipes/:slug/edit' do
+    @recipe = Recipe.find_by_slug(params[:slug])
+    erb :'recipes/edit'
+  end
+
+  patch '/recipes/:slug' do
+    recipe = Recipe.find_by(:name => params[:recipe][:name])
+    recipe.update(params[:recipe])
+    recipe.ingredients.each_with_index do |ingredient, i|
+      ingredient.update(params[:ingredients][i])
+      ingredient.amounts[0].update(params[:amounts][i])
+    end
+    redirect "recipes/#{recipe.slug}"
+  end
+
   delete '/recipes/:slug/delete' do
     @recipe = Recipe.find_by_slug(params[:slug])
     @user = User.find(@recipe.user_id)

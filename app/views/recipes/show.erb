@@ -4,8 +4,7 @@
 <%end%>
 <h4><%= @recipe.method %></h4>
 <h4><%= @recipe.notes %></h4>
-<form action="/recipes/<%= @recipe.slug %>/edit" method="post">
-  <input type="hidden" name="_method" value="patch">
+<form action="/recipes/<%= @recipe.slug %>/edit" method="get">
   <input type="submit" value="Edit">
 </form>
 <form action="/recipes/<%= @recipe.slug %>/delete" method="post">
